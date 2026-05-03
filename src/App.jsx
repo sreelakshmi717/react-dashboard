@@ -24,9 +24,17 @@ function App() {
   );
 
   return (
-    <div style={{ padding: "20px", backgroundColor: "white", minHeight: "100vh" }}>
-      <h1>User List</h1>
+    <div
+      style={{
+        padding: "30px",
+        backgroundColor: "#f5f7fb",
+        minHeight: "100vh",
+        fontFamily: "Arial"
+      }}
+    >
+      <h1 style={{ marginBottom: "20px" }}>User List</h1>
 
+      {/* Search */}
       <input
         type="text"
         placeholder="Search user..."
@@ -35,7 +43,13 @@ function App() {
           setSearch(e.target.value);
           setPage(1);
         }}
-        style={{ marginBottom: "20px", padding: "8px" }}
+        style={{
+          marginBottom: "20px",
+          padding: "10px",
+          width: "250px",
+          borderRadius: "6px",
+          border: "1px solid #ccc"
+        }}
       />
 
       {/* User List */}
@@ -44,20 +58,33 @@ function App() {
           key={user.id}
           onClick={() => setSelectedUser(user)}
           style={{
-            marginBottom: "10px",
-            border: "1px solid #ccc",
-            padding: "10px",
-            cursor: "pointer"
+            marginBottom: "12px",
+            border: "1px solid #ddd",
+            padding: "12px",
+            borderRadius: "8px",
+            backgroundColor: "#ffffff",
+            cursor: "pointer",
+            boxShadow: "0 2px 6px rgba(0,0,0,0.1)"
           }}
         >
-          <p><b>{user.firstName} {user.lastName}</b></p>
-          <p>{user.email}</p>
+          <p style={{ margin: 0 }}>
+            <b>{user.firstName} {user.lastName}</b>
+          </p>
+          <p style={{ margin: 0, color: "#555" }}>{user.email}</p>
         </div>
       ))}
 
       {/* User Details */}
       {selectedUser && (
-        <div style={{ marginTop: "20px", padding: "10px", border: "2px solid black" }}>
+        <div
+          style={{
+            marginTop: "25px",
+            padding: "20px",
+            borderRadius: "10px",
+            backgroundColor: "#ffffff",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.1)"
+          }}
+        >
           <h2>User Details</h2>
           <p><b>Name:</b> {selectedUser.firstName} {selectedUser.lastName}</p>
           <p><b>Email:</b> {selectedUser.email}</p>
@@ -68,15 +95,20 @@ function App() {
 
       {/* Pagination */}
       <div style={{ marginTop: "20px" }}>
-        <button onClick={() => setPage(p => p - 1)} disabled={page === 1}>
+        <button
+          onClick={() => setPage(p => p - 1)}
+          disabled={page === 1}
+          style={{ padding: "8px 12px", marginRight: "10px" }}
+        >
           Prev
         </button>
 
-        <span style={{ margin: "0 10px" }}>Page {page}</span>
+        <span>Page {page}</span>
 
         <button
           onClick={() => setPage(p => p + 1)}
           disabled={page * itemsPerPage >= filteredUsers.length}
+          style={{ padding: "8px 12px", marginLeft: "10px" }}
         >
           Next
         </button>
