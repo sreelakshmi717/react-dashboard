@@ -26,8 +26,14 @@ function App() {
   );
 
   return (
-    <div style={{ padding: "30px", backgroundColor: "#f9f9f9", minHeight: "100vh" }}>
-      
+    <div
+      style={{
+        padding: "30px",
+        backgroundColor: "#f9f9f9",
+        minHeight: "100vh",
+        color: "#000" // ✅ FORCE ALL TEXT BLACK
+      }}
+    >
       <h1>User List</h1>
 
       {/* Search */}
@@ -49,11 +55,10 @@ function App() {
         }}
       />
 
-      {/* USER LIST */}
       {paginatedUsers.map(user => (
         <div key={user.id}>
 
-          {/* USER DETAILS */}
+          {/* DETAILS */}
           {selectedUser && selectedUser.id === user.id && (
             <div
               style={{
@@ -64,8 +69,7 @@ function App() {
                 color: "#000"
               }}
             >
-              {/* ✅ ALL DETAILS IN ONE LINE */}
-              <p>
+              <p style={{ color: "#000" }}>
                 <b>Name:</b> {user.firstName} {user.lastName} |{" "}
                 <b>Email:</b> {user.email} |{" "}
                 <b>Phone:</b> {user.phone} |{" "}
@@ -84,14 +88,17 @@ function App() {
               marginBottom: "10px",
               border: "1px solid #ddd",
               backgroundColor: "#fff",
-              cursor: "pointer",
-              color: "#000" // ✅ BLACK TEXT
+              cursor: "pointer"
             }}
           >
-            <p style={{ margin: 0, fontWeight: "bold" }}>
+            <p style={{ margin: 0, fontWeight: "bold", color: "#000" }}>
               {user.firstName} {user.lastName}
             </p>
-            <p style={{ margin: 0 }}>{user.email}</p>
+
+            {/* ✅ FORCE EMAIL BLACK */}
+            <p style={{ margin: 0, color: "#000" }}>
+              {user.email}
+            </p>
           </div>
 
         </div>
@@ -109,7 +116,6 @@ function App() {
           <button onClick={() => setPage(page + 1)}>Next</button>
         )}
       </div>
-
     </div>
   );
 }
