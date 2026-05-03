@@ -26,7 +26,7 @@ function App() {
   );
 
   return (
-    <div style={{ padding: "30px", backgroundColor: "#f9f9f9", minHeight: "100vh", fontFamily: "Arial" }}>
+    <div style={{ padding: "30px", backgroundColor: "#f9f9f9", minHeight: "100vh" }}>
       
       <h1>User List</h1>
 
@@ -42,7 +42,6 @@ function App() {
         style={{
           marginBottom: "20px",
           padding: "10px",
-          width: "250px",
           border: "1px solid #ccc",
           borderRadius: "5px",
           backgroundColor: "#fff",
@@ -50,28 +49,49 @@ function App() {
         }}
       />
 
+      {/* USER LIST */}
       {paginatedUsers.map(user => (
         <div key={user.id}>
 
+          {/* USER DETAILS */}
           {selectedUser && selectedUser.id === user.id && (
-            <div style={{ padding: "15px", border: "1px solid #ddd", marginBottom: "10px", backgroundColor: "#fff" }}>
-              <button onClick={() => setSelectedUser(null)}>Close</button>
+            <div
+              style={{
+                padding: "10px",
+                marginBottom: "10px",
+                border: "1px solid #ddd",
+                backgroundColor: "#fff",
+                color: "#000"
+              }}
+            >
+              {/* ✅ ALL DETAILS IN ONE LINE */}
+              <p>
+                <b>Name:</b> {user.firstName} {user.lastName} |{" "}
+                <b>Email:</b> {user.email} |{" "}
+                <b>Phone:</b> {user.phone} |{" "}
+                <b>Age:</b> {user.age}
+              </p>
 
-              <p><b>Name:</b> {user.firstName} {user.lastName}</p>
-              <p><b>Email:</b> {user.email}</p>
-              <p><b>Phone:</b> {user.phone}</p>
-              <p><b>Age:</b> {user.age}</p>
+              <button onClick={() => setSelectedUser(null)}>Close</button>
             </div>
           )}
 
+          {/* USER CARD */}
           <div
             onClick={() => setSelectedUser(user)}
-            style={{ padding: "10px", border: "1px solid #ddd", marginBottom: "10px", backgroundColor: "#fff", cursor: "pointer" }}
+            style={{
+              padding: "10px",
+              marginBottom: "10px",
+              border: "1px solid #ddd",
+              backgroundColor: "#fff",
+              cursor: "pointer",
+              color: "#000" // ✅ BLACK TEXT
+            }}
           >
-            <p style={{ color: "#000", fontWeight: "bold" }}>
+            <p style={{ margin: 0, fontWeight: "bold" }}>
               {user.firstName} {user.lastName}
             </p>
-            <p>{user.email}</p>
+            <p style={{ margin: 0 }}>{user.email}</p>
           </div>
 
         </div>
@@ -79,9 +99,15 @@ function App() {
 
       {/* Pagination */}
       <div>
-        {page > 1 && <button onClick={() => setPage(page - 1)}>Prev</button>}
+        {page > 1 && (
+          <button onClick={() => setPage(page - 1)}>Prev</button>
+        )}
+
         <span> Page {page} / {totalPages} </span>
-        {page < totalPages && <button onClick={() => setPage(page + 1)}>Next</button>}
+
+        {page < totalPages && (
+          <button onClick={() => setPage(page + 1)}>Next</button>
+        )}
       </div>
 
     </div>
